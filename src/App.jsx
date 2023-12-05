@@ -1,15 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-
+import { categories } from "./utils/mockData";
+import "./categories.styles.scss";
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <h1>Urban clothing</h1>
-    </>
+    <div className="categories-container">
+      {categories.map((category) => (
+        <div className="category-container" key={category.id}>
+          <div className="background-image" />
+          <div className="category-body-container">
+            <h2>{category.title}</h2>
+            <p>{category.subTitle}</p>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
 
