@@ -5,22 +5,22 @@ export const categories = [
     imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
   },
   {
-    id: 100,
+    id: 101,
     title: "Jackets",
     imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
   },
   {
-    id: 100,
+    id: 102,
     title: "Sneakers",
     imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
   },
   {
-    id: 100,
+    id: 103,
     title: "Womens",
     imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
   },
   {
-    id: 100,
+    id: 104,
     title: "Mens",
     imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
   },
