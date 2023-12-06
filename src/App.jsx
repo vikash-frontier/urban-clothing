@@ -1,7 +1,12 @@
-import { categories } from "./utils/mockData";
-import Directory from "./components/directory/Directory";
+import { Routes, Route } from "react-router-dom";
+import Home from "./routes/home/Home";
+
 function App() {
-  return <Directory categories={categories} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
 }
 
 export default App;
