@@ -7,7 +7,7 @@ import FormInput from "../form-input/FormInput";
 import "./sign-up.styles.scss";
 import Button from "../button/Button";
 
-const SingUpFrom = () => {
+const SignUpFrom = () => {
   const [formFields, setFormFields] = useState({
     displayName: "",
     email: "",
@@ -95,4 +95,4 @@ const SingUpFrom = () => {
   );
 };
 
-export default SingUpFrom;
+export default SignUpFrom;
