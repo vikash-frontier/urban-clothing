@@ -1,61 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 import FormInput from "../form-input/FormInput";
 import Button from "../button/Button";
+import { UserContext } from "../../context/UserContext";
+
 import "./sign-in.styles.scss";
 import {
+  auth,
   signInWithGooglePopup,
   createUserDocumentFromAuth,
-  singInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
+import { checkValidateData } from "../../utils/validate";
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState({
+    email: "",
     password: "",
-    confirmPassword: "",
   });
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const { setCurrentUser } = useContext(UserContext);
+
+  const { email, password } = formFields;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const signWithGooglePopUp = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
-  };
+  // const signWithGooglePopUp = async () => {
+  //   const { user } = await signInWithGooglePopup();
+  //   await createUserDocumentFromAuth(user);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await singInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      console.log(response);
-      setFormFields({
-        email: "",
-        password: "",
-      });
-    } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("incorrect password for email");
-          break;
-        case "auth/user-not-found":
-          alert("no user associated with this email");
-          break;
-        default:
-          console.log(error);
-      }
-    }
-  };
 
-  const { email, password } = formFields;
+    const message = checkValidateData(email, password);
+    setErrorMessage(message);
+    if (message) return;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setCurrentUser(user);
+        setFormFields({
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + "-" + errorMessage);
+      });
+  };
 
   return (
     <div className="sign-up-container">
-      <h2>Don't have an account?</h2>
-      <span>Sign up with your email and password</span>
+      <h2>I already have an account!</h2>
+      <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Email"
@@ -64,6 +70,7 @@ const SignInForm = () => {
           onChange={handleChange}
           name="email"
           value={email}
+          autocomplete="off"
         />
         <FormInput
           label="Password"
@@ -72,18 +79,21 @@ const SignInForm = () => {
           onChange={handleChange}
           name="password"
           value={password}
+          autocomplete="off"
         />
+        <p className="text-red-500 font-bold">{errorMessage}</p>
         <div className="btn">
           <Button buttonType="" type="submit">
             Sign In
           </Button>
+          {/* <span>OR</span>
           <Button
             type="button"
             buttonType="google"
             onClick={signWithGooglePopUp}
           >
             Sign In with Google
-          </Button>
+          </Button> */}
         </div>
       </form>
     </div>

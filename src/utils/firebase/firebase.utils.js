@@ -1,37 +1,37 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  signInWithRedirect,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { doc, getDoc, setDoc, getFirestore } from "firebase/firestore";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDFqFjEZYECRXOD6Fo-sgelZhq5pYP1XEE",
-  authDomain: "urban-clothing-db-50276.firebaseapp.com",
-  projectId: "urban-clothing-db-50276",
-  storageBucket: "urban-clothing-db-50276.appspot.com",
-  messagingSenderId: "986945931561",
-  appId: "1:986945931561:web:cebb5fefce5e399b434f38",
+  apiKey: "AIzaSyAobCpLHlW_xXoJDNUr0vEf9p_dT0Lfexs",
+  authDomain: "food-ordering-cd68e.firebaseapp.com",
+  projectId: "food-ordering-cd68e",
+  storageBucket: "food-ordering-cd68e.appspot.com",
+  messagingSenderId: "155442684428",
+  appId: "1:155442684428:web:5abc406938989f5005c429",
+  measurementId: "G-SVK5M1259X",
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+export const db = getFirestore();
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.getCustomParameters({
   prompt: "select_account",
 });
+const analytics = getAnalytics(app);
 
-export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
-export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleProvider);
-
-export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -57,16 +57,4 @@ export const createUserDocumentFromAuth = async (
     }
   }
   return userDocRef;
-};
-
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
-
-  return await createUserWithEmailAndPassword(auth, email, password);
-};
-
-export const singInAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
-
-  return await signInWithEmailAndPassword(auth, email, password);
 };
