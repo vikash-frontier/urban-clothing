@@ -5,9 +5,15 @@ import { logo } from "../../assets";
 import { UserContext } from "../../context/UserContext";
 
 import "./navigation.style.scss";
+import { signOutfun } from "../../utils/firebase/firebase.utils";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const onClickHandler = async () => {
+    await signOutfun();
+    setCurrentUser(null);
+  };
 
   console.log("Current User", currentUser);
   return (
@@ -21,7 +27,7 @@ const Navigation = () => {
             Shop
           </Link>
           {currentUser ? (
-            <span>SIGN OUT</span>
+            <span onClick={onClickHandler}>SIGN OUT</span>
           ) : (
             <Link className="nav-link" to="/sign-in">
               SIGN In
