@@ -64,4 +64,4 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 
-export const signOutfun = signOut(auth);
+export const signOutfun = async () => await signOut(auth);
