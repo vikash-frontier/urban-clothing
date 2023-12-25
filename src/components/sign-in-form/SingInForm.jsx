@@ -3,7 +3,6 @@ import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import FormInput from "../form-input/FormInput";
 import Button from "../button/Button";
-import { UserContext } from "../../context/UserContext";
 
 import "./sign-in.styles.scss";
 import {
@@ -20,8 +19,6 @@ const SignInForm = () => {
   });
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const { email, password } = formFields;
 
   const handleChange = (e) => {
@@ -29,10 +26,9 @@ const SignInForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  // const signWithGooglePopUp = async () => {
-  //   const { user } = await signInWithGooglePopup();
-  //   await createUserDocumentFromAuth(user);
-  // };
+  const signWithGooglePopUp = async () => {
+    await signInWithGooglePopup();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +41,6 @@ const SignInForm = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        setCurrentUser(user);
         setFormFields({
           email: "",
           password: "",
@@ -86,14 +81,14 @@ const SignInForm = () => {
           <Button buttonType="" type="submit">
             Sign In
           </Button>
-          {/* <span>OR</span>
+          <span>OR</span>
           <Button
             type="button"
             buttonType="google"
             onClick={signWithGooglePopUp}
           >
             Sign In with Google
-          </Button> */}
+          </Button>
         </div>
       </form>
     </div>

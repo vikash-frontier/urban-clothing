@@ -5,7 +5,6 @@ import FormInput from "../form-input/FormInput";
 import Button from "../button/Button";
 import { auth } from "../../utils/firebase/firebase.utils";
 import { checkValidateData } from "../../utils/validate";
-import { UserContext } from "../../context/UserContext";
 
 import "./sign-up.styles.scss";
 
@@ -16,7 +15,6 @@ const SignUpFrom = () => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState(null);
-  const { setCurrentUser } = useContext(UserContext);
 
   console.log(formFields);
   const handleChange = (e) => {
@@ -40,8 +38,6 @@ const SignUpFrom = () => {
           displayName: displayName,
           // photoURL: USER_AVATAR,
         });
-
-        setCurrentUser(user);
         setFormFields({
           displayName: "",
           email: "",

@@ -6,6 +6,7 @@ import {
   getAuth,
   signInWithPopup,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, getFirestore } from "firebase/firestore";
 
@@ -65,3 +66,6 @@ export const createUserDocumentFromAuth = async (
 };
 
 export const signOutfun = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
