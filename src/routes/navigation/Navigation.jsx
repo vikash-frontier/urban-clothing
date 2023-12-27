@@ -6,6 +6,7 @@ import { UserContext } from "../../context/UserContext";
 
 import "./navigation.style.scss";
 import { signOutfun } from "../../utils/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon/CartIcon";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -18,15 +19,19 @@ const Navigation = () => {
         </Link>
         <div className="nav-links-container">
           <Link className="nav-link" to="/shop">
-            Shop
+            SHOP
+          </Link>
+          <Link className="nav-link" to="/contact">
+            CONTACT
           </Link>
           {currentUser ? (
             <span onClick={signOutfun}>SIGN OUT</span>
           ) : (
             <Link className="nav-link" to="/sign-in">
-              SIGN In
+              SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
       </div>
 
