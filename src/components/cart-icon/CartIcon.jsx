@@ -5,7 +5,7 @@ import { shoppingIcon } from "../../assets";
 import { CartContext } from "../../context/CartContex";
 
 const CartIcon = () => {
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext);
 
   const onCartHandler = () => {
     setIsCartOpen(!isCartOpen);
@@ -13,7 +13,7 @@ const CartIcon = () => {
   return (
     <div className="cart-icon-container" onClick={onCartHandler}>
       <img src={shoppingIcon} alt="shoppingIcon" className="shopping-icon" />
-      <span className="item-count">0</span>
+      <span className="item-count">{cartItems?.length}</span>
     </div>
   );
 };
