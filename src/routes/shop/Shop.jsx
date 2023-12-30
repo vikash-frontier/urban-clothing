@@ -8,9 +8,9 @@ const Shop = () => {
 
   return (
     <div className="products-contaier">
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <ProductCard key={product.id} products={product} />
-      ))}
+      ))} */}
     </div>
   );
 };
