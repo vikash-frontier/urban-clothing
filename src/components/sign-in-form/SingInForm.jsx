@@ -41,6 +41,7 @@ const SignInForm = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        createUserDocumentFromAuth(user);
         setFormFields({
           email: "",
           password: "",
