@@ -63,7 +63,7 @@ const SignUpFrom = () => {
           onChange={handleChange}
           name="displayName"
           value={displayName}
-          autocomplete="off"
+          autoComplete="off"
         />
         <FormInput
           label="Email"
@@ -72,7 +72,7 @@ const SignUpFrom = () => {
           onChange={handleChange}
           name="email"
           value={email}
-          autocomplete="off"
+          autoComplete="off"
         />
         <FormInput
           label="Password"
@@ -81,7 +81,7 @@ const SignUpFrom = () => {
           onChange={handleChange}
           name="password"
           value={password}
-          autocomplete="off"
+          autoComplete="off"
         />
         <p>{errorMessage}</p>
         <Button type="submit">Sign Up</Button>

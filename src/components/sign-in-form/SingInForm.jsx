@@ -66,7 +66,7 @@ const SignInForm = () => {
           onChange={handleChange}
           name="email"
           value={email}
-          autocomplete="off"
+          autoComplete="off"
         />
         <FormInput
           label="Password"
@@ -75,7 +75,7 @@ const SignInForm = () => {
           onChange={handleChange}
           name="password"
           value={password}
-          autocomplete="off"
+          autoComplete="off"
         />
         <p className="text-red-500 font-bold">{errorMessage}</p>
         <div className="btn">
