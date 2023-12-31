@@ -28,7 +28,9 @@ const Navigation = () => {
             CONTACT
           </Link>
           {currentUser ? (
-            <span onClick={signOutfun}>SIGN OUT</span>
+            <span className="nav-link" onClick={signOutfun}>
+              SIGN OUT
+            </span>
           ) : (
             <Link className="nav-link" to="/sign-in">
               SIGN IN
