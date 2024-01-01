@@ -11,8 +11,8 @@ const CategoriesPreview = () => {
     <Fragment>
       {Object.keys(products).length === 0 ? (
         <>
-          <Shimmer />
-          <Shimmer />
+          <Shimmer type="card" />
+          <Shimmer type="card" />
         </>
       ) : (
         <Fragment>
