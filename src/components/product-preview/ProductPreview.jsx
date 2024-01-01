@@ -10,7 +10,7 @@ const ProductPreview = ({ title, products }) => {
       <h2>
         <span className="title">{title.toUpperCase()}</span>
         <Link to={`${title}`} className="view-all">
-          <span>View All</span>
+          <span>View More</span>
         </Link>
       </h2>
       <div className="preview">
